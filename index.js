@@ -3,12 +3,17 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const connectDB = require('./database/database');
-const cors = require('cors')
+const cors = require('cors');
+const fileupload=require('express-fileupload');
 
 //2. creating and express application
 const app = express();
 //Json Config
 app.use(express.json())
+
+//file upload config
+app.use(fileupload())
+
 
 //CORS Config
 const corsOptions = {
@@ -38,7 +43,7 @@ app.get('/login', (req, res) => { //request pathauney ani kam garera back pathau
 
 //configuring  Routes
 app.use('/api/user', require('./routes/userRoutes'))
-// app.use('/api/test', require('./routes/productRoutes'))
+app.use('/api/product', require('./routes/productRoutes'))
 
 
 
