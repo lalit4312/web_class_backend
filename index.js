@@ -14,6 +14,9 @@ app.use(express.json())
 //file upload config
 app.use(fileupload())
 
+// make a public folder access to outside
+app.use(express.static('./public'))
+
 
 //CORS Config
 const corsOptions = {

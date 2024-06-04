@@ -1,5 +1,5 @@
 const path = require('path');
-const productModel=require('../models/productModel')
+const productModel = require('../models/productModel')
 
 const createProduct = async (req, res) => {
     console.log(req.body)
@@ -35,18 +35,18 @@ const createProduct = async (req, res) => {
         await productImage.mv(imageUploadPath)
 
         //save to database
-        const newProduct=new productModel({
-            productName:productName,
-            productPrice:productPrice,
-            productDescription:productDescription,
-            productCategory:productCategory,
-            productImage:imageName
+        const newProduct = new productModel({
+            productName: productName,
+            productPrice: productPrice,
+            productDescription: productDescription,
+            productCategory: productCategory,
+            productImage: imageName
         })
-        const product=await newProduct.save();
+        const product = await newProduct.save();
         res.status(201).json({
-            success:true,
-            message:"Product created",
-            data:product
+            success: true,
+            message: "Product created",
+            data: product
         })
 
     } catch (error) {
@@ -58,6 +58,28 @@ const createProduct = async (req, res) => {
         })
     }
 }
+
+// fetch all products
+const gteAllProducts = async (req, res) => {
+    //#. try catch
+    try {
+        // 1. find all the products(Await)
+        const products=await productModel.find({})
+        // 2. send response
+        res.status(201).json({
+            "success":true,
+            "message":'product fetched successfully',
+            "products":products
+        })
+
+    } catch (error) {
+
+    }
+
+}
+
+
 module.exports = {
-    createProduct
+    createProduct,
+    gteAllProducts
 }
