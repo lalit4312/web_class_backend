@@ -98,7 +98,7 @@ const loginUser = async (req, res) => {
         //3. generate JWT token
         //3.1 secret Decryption key(.env ma xa)
         const token = await jwt.sign(
-            { id: user._id },
+            { id: user._id, isAdmin: user.isAdmin },
             process.env.JWT_SECRET
         )
         //4. send the token, userDate, message to the user
