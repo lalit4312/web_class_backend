@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const connectDB = require('./database/database');
 const cors = require('cors');
-const fileupload=require('express-fileupload');
+const fileupload = require('express-fileupload');
 
 //2. creating and express application
 const app = express();
@@ -37,12 +37,12 @@ const PORT = process.env.PORT;
 
 //4. creating a test route or endpoint(
 app.get('/test', (req, res) => { //request pathauney ani kam garera back pathauney)
-    res.send("Test Api is Working...!")
+    res.status(200).send("Test Api is Working...!")
 }),
 
-app.get('/login', (req, res) => { //request pathauney ani kam garera back pathauney)
-    res.send("Test Api is Working...!")
-})
+    app.get('/login', (req, res) => { //request pathauney ani kam garera back pathauney)
+        res.send("Test Api is Working...!")
+    })
 
 //configuring  Routes
 app.use('/api/user', require('./routes/userRoutes'))
@@ -63,3 +63,6 @@ app.listen(PORT, () => {
 
 //API URl
 //http://localhost:5500/test
+
+// exporting for testing
+module.exports = app;

@@ -67,7 +67,7 @@ const gteAllProducts = async (req, res) => {
         // 1. find all the products(Await)
         const products = await productModel.find({})
         // 2. send response
-        res.status(201).json({
+        res.status(200).json({
             success: true,
             message: 'product fetched successfully',
             products: products
